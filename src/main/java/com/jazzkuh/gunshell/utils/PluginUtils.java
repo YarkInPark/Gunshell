@@ -130,15 +130,6 @@ public class PluginUtils {
         return jsonObject.get("address").getAsString();
     }
 
-    private JsonObject getJSON(String url, String method) {
-        try {
-            HttpURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
-            connection.setConnectTimeout(5000);
-            connection.setRequestMethod(method);
-            connection.setRequestProperty("User-Agent", "Gunshell-Agent");
-            connection.setRequestProperty("Version", GunshellPlugin.getInstance().getDescription().getVersion());
-            connection.connect();
-
             return new JsonParser().parse(new InputStreamReader((InputStream) connection.getContent()))
                     .getAsJsonObject();
         } catch (IOException ignored) {
